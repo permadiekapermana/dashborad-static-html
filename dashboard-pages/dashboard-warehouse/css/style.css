@@ -1,0 +1,17 @@
+/* make class custom-select, white background */
+.custom-select {
+    background: #fff;
+    display: inline-block;
+    vertical-align: middle;
+    /* make padding 4px left right */
+    padding: 0 4px;
+    display: inline-block;
+    border-radius:10px;
+    margin-left: 5px;
+}
+
+.btn-light{
+    background: #FFF;
+    /* border black solid 1px */
+    border: 1px solid #000;
+}

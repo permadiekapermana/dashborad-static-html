@@ -1,0 +1,284 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Import style css -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <link rel="stylesheet" href="fullcalendar/fullcalendar.css">
+    <script src="fullcalendar/fullcalendar.js"></script>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    
+
+    <title>Dashboard Employee Management System (EMS)</title>
+  </head>
+  <body>
+    
+    <div class="container-fluid container-fluid-shorter py-4 bg-white">
+        <!-- ROW 1 -->
+        <div class="row">
+            <!-- Card Status -->
+            <div class="col-md-3 col-sm-6 col-xs-12 mb-3">
+                <div class="card" style="max-width: 540px;">
+                    <div class="row g-0">
+                        <div class="col-md-4 text-center bg-primary-status">
+                        <div class="card-body d-flex align-items-center justify-content-center">
+                            <img src="img/status_icon.png" class="img-fluid rounded-start" alt="...">
+                        </div>
+                        </div>
+                        <div class="col-md-8 bg-secondary-status">
+                        <div class="card-body text-white">
+                            <h5 class="card-title">STATUS</h5>
+                            <p class="card-text">PERMANENT</p>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Card Counter Remaining Leave -->
+            <div class="col-md-3 col-sm-6 col-xs-12 mb-3">
+                <div class="card" style="max-width: 540px;">
+                    <div class="row g-0">
+                        <div class="col-md-4 text-center bg-primary-leave">
+                        <div class="card-body d-flex align-items-center justify-content-center">
+                            <img src="img/remaining_leave_icon.png" class="img-fluid rounded-start" alt="...">
+                        </div>
+                        </div>
+                        <div class="col-md-8 bg-secondary-leave">
+                        <div class="card-body text-white">
+                            <h5 class="card-title">REMAININGLEAVE</h5>
+                            <p class="card-text">9</p>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Card Counter Uncomplete -->
+            <div class="col-md-3 col-sm-6 col-xs-12 mb-3">
+                <div class="card" style="max-width: 540px;">
+                    <div class="row g-0">
+                        <div class="col-md-4 text-center bg-primary-uncomplete">
+                        <div class="card-body d-flex align-items-center justify-content-center">
+                            <img src="img/uncomplete_icon.png" class="img-fluid rounded-start" alt="...">
+                        </div>
+                        </div>
+                        <div class="col-md-8 bg-secondary-uncomplete">
+                        <div class="card-body text-white">
+                            <h5 class="card-title">UNCOMPLETE</h5>
+                            <p class="card-text">0</p>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Card Team Leader -->
+            <div class="col-md-3 col-sm-6 col-xs-12 mb-3">
+                <div class="card" style="max-width: 540px;">
+                    <div class="row g-0">
+                        <div class="col-md-4 text-center bg-primary-leader">
+                        <div class="card-body d-flex align-items-center justify-content-center">
+                            <img src="img/team_leader_icon.png" class="img-fluid rounded-start" alt="...">
+                        </div>
+                        </div>
+                        <div class="col-md-8 bg-secondary-leader">
+                        <div class="card-body text-white">
+                            <h5 class="card-title">TEAM LEADER</h5>
+                            <p class="card-text">SELLY AMALIATAMA</p>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ROW 2 -->
+        <div class="row">
+            <!-- Card Status -->
+            <div class="col-md-8 col-sm-6 col-xs-12 mb-3">
+                <div class="card">
+                    <div class="row g-0">
+                        <div class="card-body">
+                            <div id="calendar"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Card Counter Remaining Leave -->
+            <div class="col-md-4 col-sm-6 col-xs-12 mb-3">                
+                <div class="card">
+                    <div class="card-header text-center" style="background-color: #FFF;">
+                        EVENTS THIS MONTH
+                    </div>
+                    <div class="card-body">
+                        <nav>
+                            <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                              <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">HOLIDAY & EVENT</button>
+                              <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">LEAVE</button>
+                              <button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">BIRTHDAY</button>
+                            </div>
+                        </nav>
+                        <div class="tab-content" id="nav-tabContent">
+                            <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                                <div class="row mt-3">
+                                    <div class="col-3 text-center date-card-events">
+                                        <h5>APR</h5>
+                                        <h5>12</h5>                                        
+                                    </div>
+                                    <div class="col-9 text-end">
+                                        <span class="text-card-events">Wafat Isa Almasih</span>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="mt-3">
+                                    <p>*Events can be changed at any time</p>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+                                <div class="row mt-3">
+                                    <div class="col-3 text-center date-card-events">
+                                        <h5>APR</h5>
+                                        <h5>1</h5>                                        
+                                    </div>
+                                    <div class="col-9 text-end">
+                                        <span class="text-card-events">Endah Febiana Gunawan</span>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="row mt-3">
+                                    <div class="col-3 text-center date-card-events">
+                                        <h5>APR</h5>
+                                        <h5>2</h5>                                        
+                                    </div>
+                                    <div class="col-9 text-end">                                        
+                                        <span class="text-card-events">Septa Farid Kurnia</span>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="row mt-3">
+                                    <div class="col-3 text-center date-card-events">
+                                        <h5>APR</h5>
+                                        <h5>3</h5>                                        
+                                    </div>
+                                    <div class="col-9 text-end">                                        
+                                        <span class="text-card-events">Yuda Permana</span>
+                                    </div>
+                                </div>
+                                <hr>
+                            </div>
+                            <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
+                                <div class="row mt-3">
+                                    <div class="col-3 text-center date-card-events">
+                                        <h5>APR</h5>
+                                        <h5>21</h5>                                        
+                                    </div>
+                                    <div class="col-9 text-end">
+                                        <span class="text-card-events">Permadi Eka Permana</span>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="row mt-3">
+                                    <div class="col-3 text-center date-card-events">
+                                        <h5>APR</h5>
+                                        <h5>22</h5>                                        
+                                    </div>
+                                    <div class="col-9 text-end">                                        
+                                        <span class="text-card-events">Syarifudin Yoga Pinasty</span>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="row mt-3">
+                                    <div class="col-3 text-center date-card-events">
+                                        <h5>APR</h5>
+                                        <h5>23</h5>                                        
+                                    </div>
+                                    <div class="col-9 text-end">                                        
+                                        <span class="text-card-events">Asep Maulana Ismail</span>
+                                    </div>
+                                </div>
+                                <hr>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> 
+
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <script src="fullcalendar/lib/jquery.min.js"></script>
+    <script src="fullcalendar/lib/moment.min.js"></script>
+    <script src="fullcalendar/lib/jquery-ui.custom.min.js"></script>
+    <script src='fullcalendar/fullcalendar.min.js'></script>
+
+    <script>
+        $('#calendar').fullCalendar({
+            header: {
+                left: 'prev,next today',
+                center: 'title',
+                right: ''
+            },
+            defaultDate: '2022-04-12',
+            navLinks: true, // can click day/week names to navigate views
+            editable: true,
+            eventLimit: true, // allow "more" link when too many events
+            events: [
+                {
+                title: 'Wafat Isa Almasih',
+                start: '2022-04-12',
+                imageurl: 'http://bas.ptbsp.com/bee-as/img/icon/calendar.png'
+                },
+                {
+                title: 'Endah Febiana Gunawan',
+                start: '2022-04-01',
+                imageurl: 'http://bas.ptbsp.com/bee-as/img/icon/walking.png'
+                },
+                {
+                title: 'Septa Farid Kurnia',
+                start: '2022-04-02',
+                imageurl: 'http://bas.ptbsp.com/bee-as/img/icon/walking.png'
+                },  
+                {
+                title: 'Yuda Permana',
+                start: '2022-04-02',
+                imageurl: 'http://bas.ptbsp.com/bee-as/img/icon/walking.png'
+                },
+                {
+                title: 'Permadi Eka Permana',
+                start: '2022-04-21',
+                imageurl: 'http://bas.ptbsp.com/bee-as/img/icon/birthday-boy.png'
+                },
+                {
+                title: 'Syarifudin Yoga Pinasty',
+                start: '2022-04-22',
+                imageurl: 'http://bas.ptbsp.com/bee-as/img/icon/birthday-boy.png'
+                }, 
+                {
+                title: 'Asep Maulana Ismail',
+                start: '2022-04-23',
+                imageurl: 'http://bas.ptbsp.com/bee-as/img/icon/birthday-boy.png'
+                }, 
+            ],
+            eventRender: function(event, eventElement) {
+                if (event.imageurl) {
+                    eventElement.find("div.fc-content").prepend("<img src='" + event.imageurl +"' width='16' height='16'>");
+                }
+            },
+            });
+    </script>
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+    -->
+  </body>
+</html>

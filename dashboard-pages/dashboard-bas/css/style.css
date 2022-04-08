@@ -1,0 +1,41 @@
+/* make class bg-primary bg color to red */
+.bg-primary-status {
+    background-color: #CD1A57 !important;
+}
+
+.bg-secondary-status {
+    background-color: #E91E63 !important;
+}
+
+.bg-primary-leave {
+    background-color: #00A5BA !important;
+}
+
+.bg-secondary-leave {
+    background-color: #00BCD4 !important;
+}
+
+.bg-primary-uncomplete {
+    background-color: #7AAB41 !important;
+}
+
+.bg-secondary-uncomplete {
+    background-color: #8BC34A !important;
+}
+
+.bg-primary-leader {
+    background-color: #E08600 !important;
+}
+
+.bg-secondary-leader {
+    background-color: #FF9800 !important;
+}
+
+.text-card-events {
+    background-color: #16216B !important;
+    color: #fff !important;
+}
+
+.date-card-events {
+    color: #16216B !important;
+}
