@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html>
+<head>
+     <!-- Required meta tags -->
+     <meta charset="utf-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+     <link href="https://api.mapbox.com/mapbox-gl-js/v2.7.0/mapbox-gl.css" rel="stylesheet">
+     <script src="https://api.mapbox.com/mapbox-gl-js/v2.7.0/mapbox-gl.js"></script>
+     <!-- Bootstrap CSS -->
+     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+     
+
+	<title>DASHBOARD SABHARA - AUDIT</title>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js"></script>
+</head>
+<body>
+	<style type="text/css">
+		body{
+			font-family: roboto;
+		}
+    .pos{
+      top: 50px;
+    }
+    .pos2{
+      top: 5px;
+    }
+    .judul{
+      text-align: center;
+      font-size: 25px;
+    }
+    #map { 
+      position: relative; 
+      width: 100%; 
+      height: 85%;
+    }
+	</style>
+    <div class="container-fluid">
+      <div class="row">
+          <div class="col-md-3">
+              <div class="card" style="height: 28rem;">
+                  <div class="card-body">
+                      <form>
+                          <p style="font-size: 25px;"><b>Filter Data</b></p><br>
+                          <div class="form-group">
+                            <label for="exampleFormControlSelect1">Tahun</label>
+                            <select class="form-control" id="exampleFormControlSelect2">
+                              <option>2020</option>
+                              <option>2021</option>
+                              <option>2022</option>
+                              <option>2023</option>
+                              <option>2024</option>
+                            </select>
+                          </div>
+                          <div class="form-group">
+                            <label for="exampleFormControlSelect1">BULAN</label>
+                            <select class="form-control" id="exampleFormControlSelect4">
+                              <option>JANUARI</option>
+                              <option>FEBRUARI</option>
+                              <option>MARET</option>
+                              <option>APRIL</option>
+                              <option>MEI</option>
+                              <option>JUNI</option>
+                              <option>JULI</option>
+                              <option>AGUSTUS</option>
+                              <option>SEPTEMBER</option>
+                              <option>OKTOBER</option>
+                              <option>NOVEMBER</option>
+                              <option>DESEMBER</option>
+                            </select>
+                          </div>
+                          <div class="form-group">
+                            <label for="exampleFormControlSelect1">POLDA</label>
+                            <select class="form-control" id="exampleFormControlSelect3">
+                              <option>POLDA JAWA BARAT</option>
+                              <option>POLDA JAWA TENGAH</option>
+                              <option>POLDA JAWA TIMUR</option>
+                              <option>POLDA DKI JAKARTA</option>
+                              <option>POLDA BANTEN</option>
+                            </select>
+                          </div>
+                        </form>
+                  </div>
+              </div>
+          </div>
+          <div class="col-md-3">
+              <div class="card" style="height: 28rem;">
+                  <div class="card-body">
+                      <p class="judul"><b>Total Laporan Audit Yang Telah Masuk</b></p><br>
+                      <div class="row">
+                        <div class="col display-1 d-flex justify-content-center pos">
+                          <img src="img/g6.png" class="img-fluid" alt="Total Kegiatan" width="110">21
+                        </div>
+                      </div>
+                      <br><br><br><br><br>
+                          <center><p style="color: chartreuse;font-size: 1.5rem;">+0.2 % from last year</p></center>
+                  </div>
+              </div>
+          </div>
+          <div class="col-md-6">
+              <div class="card" style="height: 28rem;">
+                  <div class="card-body">
+                    <p class="judul"><b>Jumlah Laporan Audit Yang Telah Diinput</b></p><br>
+                      <div>
+                          <center><canvas id="jumlah_input" height="300"></canvas></center>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card" style="height: 33rem;">
+            <div class="card-body">
+              <p class="card-title judul"><b>Data Pelaporan Audit Perwilayah</b></p>
+                    <div id="map"></div>
+                    <script>
+                      mapboxgl.accessToken = 'pk.eyJ1Ijoic3lhcmlmdWRpbnlvZ2EiLCJhIjoiY2p1YnlrY3BpMGlzNjQ0bnBsM2swbnJ6NyJ9.iZN2GI1beXXVVoDtMAKW5g';
+                        const map = new mapboxgl.Map({
+                          container: 'map', // container ID
+                          style: 'mapbox://styles/mapbox/streets-v11', // style URL
+                          center: [114.554850, 0.961883], // starting position [lng, lat]
+                          zoom: 3.7 // starting zoom
+                        });
+                   
+                      map.on('load', () => {
+                        map.addSource('places', {
+                          'type': 'geojson',
+                          'data': {
+                            'type': 'FeatureCollection',
+                            'features': [
+                                {
+                                  'type': 'Feature',
+                                  'properties': {
+                                    'description':
+                                      `<strong><center>POLDA JAWA BARAT</center></strong>
+                                      <hr>
+                                      <table>
+                                        <tr>
+                                          <td>Wilayah</td>
+                                          <td> </td>
+                                          <td>Jml Laporan</td>
+                                        </tr>
+                                        <tr>
+                                          <td>POLDA JAWABARAT</td>
+                                          <td>:</td>
+                                          <td>21</td>
+                                        </tr>
+                                        <tr>
+                                          <td>POLRES BANDUNG</td>
+                                          <td>:</td>
+                                          <td>100</td>
+                                        </tr>
+                                        <tr>
+                                          <td>POLRES BANDUNG BARAT</td>
+                                          <td>:</td>
+                                          <td>2</td>
+                                        </tr>
+                                        <tr>
+                                          <td>POLRES CIMAHI</td>
+                                          <td>:</td>
+                                          <td>3</td>
+                                        </tr>
+                                        <tr>
+                                          <td>POLRES SUMEDANG</td>
+                                          <td>:</td>
+                                          <td>2</td>
+                                        </tr>
+                                        <tr>
+                                          <td>POLRES CIAMIS</td>
+                                          <td>:</td>
+                                          <td>3</td>
+                                        </tr>
+                                        <tr>
+                                          <td>POLRES TASIKMALAYA</td>
+                                          <td>:</td>
+                                          <td>1</td>
+                                        </tr>
+                                        <tr>
+                                          <td>POLRES GARUT</td>
+                                          <td>:</td>
+                                          <td>1</td>
+                                        </tr>
+                                      </table>`
+                                  },
+                                  'geometry': {
+                                    'type': 'Point',
+                                    'coordinates': [107.613144, -6.905977]
+                                  }
+                                }
+                            ]
+                          }
+                      });
+                      // Add a layer showing the places.
+                      map.addLayer({
+                        'id': 'places',
+                        'type': 'circle',
+                        'source': 'places',
+                        'paint': {
+                          'circle-color': '#4264fb',
+                          'circle-radius': 6,
+                          'circle-stroke-width': 2,
+                          'circle-stroke-color': '#ffffff'
+                        }
+                      });
+ 
+                      // Create a popup, but don't add it to the map yet.
+                      const popup = new mapboxgl.Popup({
+                        closeButton: false,
+                        closeOnClick: false
+                      });
+ 
+                      map.on('mouseenter', 'places', (e) => {
+                        // Change the cursor style as a UI indicator.
+                        map.getCanvas().style.cursor = 'pointer';
+ 
+                        // Copy coordinates array.
+                        const coordinates = e.features[0].geometry.coordinates.slice();
+                        const description = e.features[0].properties.description;
+                      
+                        // Ensure that if the map is zoomed out such that multiple
+                        // copies of the feature are visible, the popup appears
+                        // over the copy being pointed to.
+                        while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+                          coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+                        }
+                      
+                        // Populate the popup and set its coordinates
+                        // based on the feature found.
+                        popup.setLngLat(coordinates).setHTML(description).addTo(map);
+                      });
+                      
+                      map.on('mouseleave', 'places', () => {
+                        map.getCanvas().style.cursor = '';
+                        popup.remove();
+                      });
+                    });
+                    </script>  
+            </div>
+          </div>
+        </div>
+      </div>
+      <br>
+    </div>
+
+
+	<script>
+		var ctx = document.getElementById("jumlah_input").getContext('2d');
+		var myChart = new Chart(ctx, {
+			type: 'bar',
+			data: {
+				labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+				datasets: [{
+					label: 'Jumlah Kegiatan',
+					data: [12, 19, 3, 23, 2, 3, 4, 3, 15, 13, 19, 20],
+					backgroundColor: [
+					'rgba(75, 192, 192, 0.2)',
+					'rgba(75, 192, 192, 0.2)',
+					'rgba(75, 192, 192, 0.2)',
+					'rgba(75, 192, 192, 0.2)',
+					'rgba(75, 192, 192, 0.2)',
+					'rgba(75, 192, 192, 0.2)',
+          'rgba(75, 192, 192, 0.2)',
+          'rgba(75, 192, 192, 0.2)',
+          'rgba(75, 192, 192, 0.2)',
+          'rgba(75, 192, 192, 0.2)',
+          'rgba(75, 192, 192, 0.2)',
+          'rgba(75, 192, 192, 0.2)',
+          'rgba(75, 192, 192, 0.2)'
+					],
+					borderColor: [
+					'rgba(75, 192, 192, 1)',
+					'rgba(75, 192, 192, 1)',
+					'rgba(75, 192, 192, 1)',
+					'rgba(75, 192, 192, 1)',
+					'rgba(75, 192, 192, 1)',
+					'rgba(75, 192, 192, 1)',
+          'rgba(75, 192, 192, 1)',
+          'rgba(75, 192, 192, 1)',
+          'rgba(75, 192, 192, 1)',
+          'rgba(75, 192, 192, 1)',
+          'rgba(75, 192, 192, 1)',
+          'rgba(75, 192, 192, 1)'
+					],
+					borderWidth: 1
+				}]
+			},
+			options: {
+        maintainAspectRatio: false,
+        responsive: true,
+				scales: {
+					yAxes: [{
+						ticks: {
+							beginAtZero:true
+						}
+					}]
+				}
+			}
+		});
+	</script>
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+</html>

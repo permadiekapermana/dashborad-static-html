@@ -75,3 +75,44 @@ body {
     /* identical to box height */
     color: #979797;
 }
+
+.card-title-report {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 800;
+    font-size: 14px;
+    line-height: 20px;
+    /* identical to box height */
+    color: #135F9C;
+    text-align: center;
+}
+
+.card-title-card {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 800;
+  font-size: 14px;
+  line-height: 20px;
+  /* identical to box height */
+  color: #5F5F5F;
+  text-align: left;
+}
+
+.thead-report {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 16px;
+  /* identical to box height, or 114% */
+
+  text-align: center;
+
+  color: #135F9C;
+}
+
+/* table border radius 10% */
+.table-report {
+  border-radius: 10px;
+  overflow: hidden;
+}
